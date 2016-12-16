@@ -1,0 +1,34 @@
+{
+    "name": "silverstripe-geocoder",
+    "description": "silverstripe wrapper for Geocoder",
+    "authors": [
+        {
+            "name": "Dynamic, Inc",
+            "email": "dev@dy.ag"
+        }
+    ],
+    "keywords": [
+        "silverstripe"
+    ],
+    "type": "silverstripe-module",
+    "license": "BSD-3-Clause",
+    "require": {
+        "silverstripe/cms": "^3.2",
+        "silverstripe/framework": "^3.2",
+        "silverstripe/reactjs-common": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "^3.7"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/open-sausages/silverstripe-reactjs-common"
+        }
+    ],
+    "config": {
+        "process-timeout": 600
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
