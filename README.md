@@ -4,7 +4,7 @@ silverstripe wrapper for Geocoder
 
 ## Requirements
 
-- SilverStripe 3.2
+- SilverStripe 4.0
 
 ## Installation
 
