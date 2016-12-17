@@ -33,7 +33,7 @@ class GoogleGeocoder
             $adapter,
             null,
             null,
-            false,
+            true,
             Config::inst()->get('SilverStripeGeocoder', 'geocoder_api_key')
         );
 
