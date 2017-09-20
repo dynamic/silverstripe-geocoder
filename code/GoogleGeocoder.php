@@ -34,7 +34,7 @@ class GoogleGeocoder
             null,
             null,
             true,
-            Config::inst()->get('SilverStripeGeocoder', 'geocoder_api_key')
+            Config::inst()->get(GoogleGeocoder::class, 'geocoder_api_key')
         );
 
         $this->setClient($geocoder);
