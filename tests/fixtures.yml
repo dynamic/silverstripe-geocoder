@@ -1,0 +1,6 @@
+Dynamic\SilverStripeGeocoder\TestOnly\TestLocation:
+  dynamic:
+    Address: '1526 S. 12th St'
+    City: 'Sheboygan'
+    State: 'WI'
+    Country: 'US'
