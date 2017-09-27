@@ -2,7 +2,7 @@
 
 namespace Dynamic\SilverStripeGeocoder;
 
-use Dynamic\SilverStripeGeocoder\GoogleGeocoder;
+use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\ReadonlyField;
 use SilverStripe\Forms\TextField;
@@ -29,7 +29,9 @@ class AddressDataExtension extends DataExtension
      */
     public function updateCMSFields(FieldList $fields)
     {
-        $fields->addFieldsToTab('Root.Address', [
+        $tab_name = Config::inst()->get(AddressDataExtension::class,'address_tab_name');
+
+        $fields->addFieldsToTab('Root.' . $tab_name, [
             TextField::create('Address'),
             TextField::create('Address2'),
             TextField::create('City'),
