@@ -1,3 +1,5 @@
 ---
 Name: silverstripegeocoderconfig
 ---
+Dynamic\SilverStripeGeocoder\AddressDataExtension:
+  address_tab_name: 'Address'
