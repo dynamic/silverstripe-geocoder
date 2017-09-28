@@ -39,6 +39,8 @@ class DistanceDataExtension extends DataExtension
                 ->addSelect(array(
                     '( ' . $unitVal . ' * acos( cos( radians(' . $Lat . ') ) * cos( radians( `Lat` ) ) * cos( radians( `Lng` ) - radians(' . $Lng . ') ) + sin( radians(' . $Lat . ') ) * sin( radians( `Lat` ) ) ) ) AS Distance',
                 ));
+        } else {
+            $query->addSelect(array('-1 AS Distance'));
         }
     }
 }
