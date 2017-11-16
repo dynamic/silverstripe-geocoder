@@ -2,7 +2,7 @@
 
 namespace Dynamic\SilverStripeGeocoder;
 
-use Dynamic\SilverStripeGeocoder\GoogleGeocoder;
+use SilverStripe\Core\Config\Config;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\Queries\SQLSelect;
 use SilverStripe\ORM\DataQuery;
@@ -16,13 +16,16 @@ class DistanceDataExtension extends DataExtension
      */
     public function augmentSQL(SQLSelect $query, DataQuery $dataQuery = null)
     {
-        $address = Controller::curr()->getRequest()->getVar('address');
+        $addressVar = Config::inst()->get(DistanceDataExtension::class, 'address_var');
+        $unitVar = Config::inst()->get(DistanceDataExtension::class, 'unit_var');
+
+        $address = Controller::curr()->getRequest()->getVar($addressVar);
         if ($this->owner->hasMethod('updateAddressValue')) {
             $address = $this->owner->updateAddressValue($address);
         }
 
         // switch between miles and kilometers
-        $unit = Controller::curr()->getRequest()->getVar('unit');
+        $unit = Controller::curr()->getRequest()->getVar($unitVar);
         if ($unit == 'km') {
             $unitVal = 6371;
         } else {
