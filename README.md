@@ -18,13 +18,13 @@ SilverStripe wrapper for [Geocoder](https://github.com/geocoder-php/Geocoder)
 
 ## Example usage
 
-in `mysite/config.yml`:
+in `mysite/_config/config.yml`:
 
 ```
 SilverStripe\ORM\DataObject:
   extensions:
-    - Dynamic/SilverStripeGeocoder/AddressDataExtension
-    - Dynamic/SilverStripeGeocoder/DistanceDataExtension
+    - Dynamic\SilverStripeGeocoder\AddressDataExtension
+    - Dynamic\SilverStripeGeocoder\DistanceDataExtension
 ```
 
 ## Documentation
