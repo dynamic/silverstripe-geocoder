@@ -22,7 +22,7 @@ in `mysite/config.yml`:
 
 ```
 SilverStripe\ORM\DataObject:
-  extensions
+  extensions:
     - Dynamic/SilverStripeGeocoder/AddressDataExtension
     - Dynamic/SilverStripeGeocoder/DistanceDataExtension
 ```
