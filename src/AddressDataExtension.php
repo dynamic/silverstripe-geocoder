@@ -3,7 +3,10 @@
 namespace Dynamic\SilverStripeGeocoder;
 
 use SilverStripe\Core\Config\Config;
+use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\HeaderField;
+use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\ReadonlyField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\DataExtension;
@@ -20,6 +23,7 @@ class AddressDataExtension extends DataExtension
         'State'    => 'Varchar(64)',
         'PostalCode' => 'Varchar(10)',
         'Country'  => 'Varchar(2)',
+        'ShowDirections' => 'Boolean',
         'Lat' => 'Decimal(10,7)',
         'Lng' => 'Decimal(10,7)',
     ];
@@ -32,12 +36,19 @@ class AddressDataExtension extends DataExtension
         $tab_name = Config::inst()->get(AddressDataExtension::class,'address_tab_name');
 
         $fields->addFieldsToTab('Root.' . $tab_name, [
+            HeaderField::create('AddressHD', 'Company', 1),
+            HeaderField::create('CompanyLocation', 'Company Location', 2),
+            LiteralField::create(
+                'LocationInfo',
+                '<p>Enter your company address information, which will be available throughout your website</p>'
+            ),
             TextField::create('Address'),
-            TextField::create('Address2'),
+            TextField::create('Address2', 'Address 2'),
             TextField::create('City'),
             TextField::create('State'),
             TextField::create('PostalCode'),
             TextField::create('Country'),
+            CheckboxField::create('ShowDirections', 'Show Map and Driving Directions'),
             ReadonlyField::create('Lat'),
             ReadonlyField::create('Lng')
         ]);
