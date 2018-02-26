@@ -30,7 +30,9 @@ SilverStripe\ORM\DataObject:
   extensions:
     - Dynamic\SilverStripeGeocoder\AddressDataExtension
     - Dynamic\SilverStripeGeocoder\DistanceDataExtension
-```
+Dynamic\SilverStripeGeocoder\GoogleGeocoder:
+  geocoder_api_key: 'your-key-here'
+```  
 
 ## Documentation
 
