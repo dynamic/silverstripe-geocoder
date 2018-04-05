@@ -7,3 +7,12 @@ Dynamic\SilverStripeGeocoder\AddressDataExtension:
 Dynamic\SilverStripeGeocoder\DistanceDataExtension:
   address_var: 'Address'
   unit_var: 'Unit'
+
+---
+After:
+  - modules-other
+  - modules-framework
+---
+SilverStripe\Core\Manifest\ModuleManifest:
+  module_priority:
+    - dynamic/silverstripe-geocoder
