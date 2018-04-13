@@ -7,6 +7,8 @@ use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\ReadonlyField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\DataExtension;
+use SilverStripe\View\SSViewer;
+use SilverStripe\View\ThemeResourceLoader;
 
 class AddressDataExtension extends DataExtension
 {
@@ -86,15 +88,74 @@ class AddressDataExtension extends DataExtension
      */
     public function AddressMap($width = 320, $height = 240, $scale = 1)
     {
+        $styleJSON = static::getMapStyleJSON();
+        $style = false;
+        if ($styleJSON !== null) {
+            $style = $this->mapStylesUrlArgs(file_get_contents($styleJSON));
+        }
+
         $data = $this->owner->customise([
             'Width' => $width,
             'Height' => $height,
             'Scale' => $scale,
             'Address' => rawurlencode($this->getFullAddress()),
+            'Style' => $style,
             'Key' => Config::inst()->get(GoogleGeocoder::class, 'geocoder_api_key'),
         ]);
 
         return $data->renderWith('Dynamic/Geocoder/AddressMap');
+    }
+
+    /**
+     * Gets the style of the map
+     * @return string|null
+     */
+    public static function getMapStyleJSON()
+    {
+        $folders = [
+            'client/js/',
+            'client/javascript/',
+            'js/',
+            'javascript/',
+        ];
+        $file = 'mapStyle.json';
+
+        foreach ($folders as $folder) {
+            if ($style = ThemeResourceLoader::inst()->findThemedResource(
+                "{$folder}{$file}",
+                SSViewer::get_themes()
+            )) {
+                return $style;
+            }
+        }
+
+       return null;
+    }
+
+    /**
+     * From https://gist.github.com/wouterds/5942b891cdad4fc90f40
+     * @param $mapStyleJson
+     *
+     * @return string
+     */
+    private function mapStylesUrlArgs($mapStyleJson)
+    {
+        $params = [];
+        foreach (json_decode($mapStyleJson, true) as $style) {
+            $styleString = '';
+            if (isset($style['stylers']) && count($style['stylers']) > 0) {
+                $styleString .= (isset($style['featureType']) ? ('feature:' . $style['featureType']) : 'feature:all') . '|';
+                $styleString .= (isset($style['elementType']) ? ('element:' . $style['elementType']) : 'element:all') . '|';
+                foreach ($style['stylers'] as $styler) {
+                    $propertyname = array_keys($styler)[0];
+                    $propertyval = str_replace('#', '0x', $styler[$propertyname]);
+                    $styleString .= $propertyname . ':' . $propertyval . '|';
+                }
+            }
+            $styleString = substr($styleString, 0, strlen($styleString) - 1);
+            $params[] = 'style=' . $styleString;
+        }
+        return implode("&", $params);
     }
 
     /**
