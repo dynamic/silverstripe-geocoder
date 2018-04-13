@@ -2,6 +2,7 @@
 
 namespace Dynamic\SilverStripeGeocoder;
 
+use SilverStripe\Control\Director;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\ReadonlyField;
@@ -94,12 +95,15 @@ class AddressDataExtension extends DataExtension
             $style = $this->mapStylesUrlArgs(file_get_contents($styleJSON));
         }
 
+        $icon = Director::absoluteURL(static::getIconImage());
+
         $data = $this->owner->customise([
             'Width' => $width,
             'Height' => $height,
             'Scale' => $scale,
             'Address' => rawurlencode($this->getFullAddress()),
             'Style' => $style,
+            'Icon' => $icon,
             'Key' => Config::inst()->get(GoogleGeocoder::class, 'geocoder_api_key'),
         ]);
 
@@ -113,8 +117,8 @@ class AddressDataExtension extends DataExtension
     public static function getMapStyleJSON()
     {
         $folders = [
-            'client/js/',
-            'client/javascript/',
+            'client/dist/js/',
+            'client/dist/javascript/',
             'js/',
             'javascript/',
         ];
@@ -129,7 +133,41 @@ class AddressDataExtension extends DataExtension
             }
         }
 
-       return null;
+       return false;
+    }
+
+    /**
+     * Gets the maker icon image
+     * @return null|string
+     */
+    public static function getIconImage()
+    {
+        $folders = [
+            'client/dist/img/',
+            'client/dist/images/',
+            'img/',
+            'images/',
+        ];
+        $extensions = [
+            'png',
+            'jpg',
+            'jpeg',
+            'gif'
+        ];
+        $file = 'mapIcon';
+
+        foreach ($folders as $folder) {
+            foreach ($extensions as $extension) {
+                if ($icon = ThemeResourceLoader::inst()->findThemedResource(
+                    "{$folder}{$file}.{$extension}",
+                    SSViewer::get_themes()
+                )) {
+                    return $icon;
+                }
+            }
+        }
+
+        return false;
     }
 
     /**
