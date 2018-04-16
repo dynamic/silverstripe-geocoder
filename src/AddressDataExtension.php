@@ -176,7 +176,7 @@ class AddressDataExtension extends DataExtension
      *
      * @return string
      */
-    private function mapStylesUrlArgs($mapStyleJson)
+    public function mapStylesUrlArgs($mapStyleJson)
     {
         $params = [];
         foreach (json_decode($mapStyleJson, true) as $style) {
