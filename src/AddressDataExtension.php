@@ -119,6 +119,9 @@ class AddressDataExtension extends DataExtension
         $folders = [
             'client/dist/js/',
             'client/dist/javascript/',
+            'dist/js/',
+            'dist/javascript/',
+            'src/javascript/thirdparty',
             'js/',
             'javascript/',
         ];
@@ -145,6 +148,8 @@ class AddressDataExtension extends DataExtension
         $folders = [
             'client/dist/img/',
             'client/dist/images/',
+            'dist/img/',
+            'dist/images/',
             'img/',
             'images/',
         ];
