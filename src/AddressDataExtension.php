@@ -91,7 +91,7 @@ class AddressDataExtension extends DataExtension
     {
         $styleJSON = static::getMapStyleJSON();
         $style = false;
-        if ($styleJSON !== null) {
+        if ($styleJSON !== false) {
             $style = $this->mapStylesUrlArgs(file_get_contents($styleJSON));
         }
 
