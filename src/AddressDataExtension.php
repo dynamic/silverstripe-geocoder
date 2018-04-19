@@ -2,11 +2,14 @@
 
 namespace Dynamic\SilverStripeGeocoder;
 
+use SilverStripe\Control\Director;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\ReadonlyField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\DataExtension;
+use SilverStripe\View\SSViewer;
+use SilverStripe\View\ThemeResourceLoader;
 
 class AddressDataExtension extends DataExtension
 {
@@ -86,15 +89,116 @@ class AddressDataExtension extends DataExtension
      */
     public function AddressMap($width = 320, $height = 240, $scale = 1)
     {
+        $styleJSON = static::getMapStyleJSON();
+        $style = false;
+        if ($styleJSON !== false) {
+            $style = $this->mapStylesUrlArgs(file_get_contents($styleJSON));
+        }
+
+        $icon = Director::absoluteURL(static::getIconImage());
+
         $data = $this->owner->customise([
             'Width' => $width,
             'Height' => $height,
             'Scale' => $scale,
             'Address' => rawurlencode($this->getFullAddress()),
+            'Style' => $style,
+            'Icon' => $icon,
             'Key' => Config::inst()->get(GoogleGeocoder::class, 'geocoder_api_key'),
         ]);
 
         return $data->renderWith('Dynamic/Geocoder/AddressMap');
+    }
+
+    /**
+     * Gets the style of the map
+     * @return string|null
+     */
+    public static function getMapStyleJSON()
+    {
+        $folders = [
+            'client/dist/js/',
+            'client/dist/javascript/',
+            'dist/js/',
+            'dist/javascript/',
+            'src/javascript/thirdparty',
+            'js/',
+            'javascript/',
+        ];
+        $file = 'mapStyle.json';
+
+        foreach ($folders as $folder) {
+            if ($style = ThemeResourceLoader::inst()->findThemedResource(
+                "{$folder}{$file}",
+                SSViewer::get_themes()
+            )) {
+                return $style;
+            }
+        }
+
+       return false;
+    }
+
+    /**
+     * Gets the maker icon image
+     * @return null|string
+     */
+    public static function getIconImage()
+    {
+        $folders = [
+            'client/dist/img/',
+            'client/dist/images/',
+            'dist/img/',
+            'dist/images/',
+            'img/',
+            'images/',
+        ];
+        $extensions = [
+            'png',
+            'jpg',
+            'jpeg',
+            'gif'
+        ];
+        $file = 'mapIcon';
+
+        foreach ($folders as $folder) {
+            foreach ($extensions as $extension) {
+                if ($icon = ThemeResourceLoader::inst()->findThemedResource(
+                    "{$folder}{$file}.{$extension}",
+                    SSViewer::get_themes()
+                )) {
+                    return $icon;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * From https://gist.github.com/wouterds/5942b891cdad4fc90f40
+     * @param $mapStyleJson
+     *
+     * @return string
+     */
+    public function mapStylesUrlArgs($mapStyleJson)
+    {
+        $params = [];
+        foreach (json_decode($mapStyleJson, true) as $style) {
+            $styleString = '';
+            if (isset($style['stylers']) && count($style['stylers']) > 0) {
+                $styleString .= (isset($style['featureType']) ? ('feature:' . $style['featureType']) : 'feature:all') . '|';
+                $styleString .= (isset($style['elementType']) ? ('element:' . $style['elementType']) : 'element:all') . '|';
+                foreach ($style['stylers'] as $styler) {
+                    $propertyname = array_keys($styler)[0];
+                    $propertyval = str_replace('#', '0x', $styler[$propertyname]);
+                    $styleString .= $propertyname . ':' . $propertyval . '|';
+                }
+            }
+            $styleString = substr($styleString, 0, strlen($styleString) - 1);
+            $params[] = 'style=' . $styleString;
+        }
+        return implode("&", $params);
     }
 
     /**
