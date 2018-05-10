@@ -4,6 +4,7 @@ namespace Dynamic\SilverStripeGeocoder;
 
 use SilverStripe\Control\Director;
 use SilverStripe\Core\Config\Config;
+use SilverStripe\Core\Manifest\ModuleResourceLoader;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\ReadonlyField;
 use SilverStripe\Forms\TextField;
@@ -132,7 +133,7 @@ class AddressDataExtension extends DataExtension
                 "{$folder}{$file}",
                 SSViewer::get_themes()
             )) {
-                return $style;
+                return BASE_PATH . DIRECTORY_SEPARATOR . $style;
             }
         }
 
@@ -167,7 +168,7 @@ class AddressDataExtension extends DataExtension
                     "{$folder}{$file}.{$extension}",
                     SSViewer::get_themes()
                 )) {
-                    return $icon;
+                    return ModuleResourceLoader::resourceURL($icon);
                 }
             }
         }
