@@ -4,6 +4,7 @@ namespace Dynamic\SilverStripeGeocoder;
 
 use SilverStripe\Control\Director;
 use SilverStripe\Core\Config\Config;
+use SilverStripe\Core\Manifest\ModuleResourceLoader;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\ReadonlyField;
 use SilverStripe\Forms\TextField;
@@ -89,7 +90,7 @@ class AddressDataExtension extends DataExtension
      */
     public function AddressMap($width = 320, $height = 240, $scale = 1)
     {
-        $styleJSON = static::getMapStyleJSON();
+        $styleJSON = static::getMapStyleJSONPath();
         $style = false;
         if ($styleJSON !== false) {
             $style = $this->mapStylesUrlArgs(file_get_contents($styleJSON));
@@ -108,6 +109,17 @@ class AddressDataExtension extends DataExtension
         ]);
 
         return $data->renderWith('Dynamic/Geocoder/AddressMap');
+    }
+
+    /**
+     * @return bool|string
+     */
+    public static function getMapStyleJSONPath()
+    {
+        if ($styleJSON =  static::getMapStyleJSON()) {
+            return BASE_PATH . DIRECTORY_SEPARATOR . $styleJSON;
+        }
+        return false;
     }
 
     /**
@@ -167,7 +179,7 @@ class AddressDataExtension extends DataExtension
                     "{$folder}{$file}.{$extension}",
                     SSViewer::get_themes()
                 )) {
-                    return $icon;
+                    return ModuleResourceLoader::resourceURL($icon);
                 }
             }
         }
