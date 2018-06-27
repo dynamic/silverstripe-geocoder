@@ -166,10 +166,11 @@ class AddressDataExtension extends DataExtension
             'images/',
         ];
         $extensions = [
+            'svg',
             'png',
             'jpg',
             'jpeg',
-            'gif'
+            'gif',
         ];
         $file = 'mapIcon';
 
