@@ -96,7 +96,7 @@ class AddressDataExtension extends DataExtension
             $style = $this->mapStylesUrlArgs(file_get_contents($styleJSON));
         }
 
-        $icon = Director::absoluteURL(static::getIconImage());
+        $icon = Director::absoluteURL(static::getIconImage(false));
 
         $data = $this->owner->customise([
             'Width' => $width,
@@ -153,9 +153,10 @@ class AddressDataExtension extends DataExtension
 
     /**
      * Gets the maker icon image
+     * @var boolean $svg if svgs should be included
      * @return null|string
      */
-    public static function getIconImage()
+    public static function getIconImage($svg = true)
     {
         $folders = [
             'client/dist/img/',
@@ -165,13 +166,18 @@ class AddressDataExtension extends DataExtension
             'img/',
             'images/',
         ];
+
         $extensions = [
-            'svg',
             'png',
             'jpg',
             'jpeg',
             'gif',
         ];
+
+        if ($svg === true) {
+            array_unshift($extensions, 'svg');
+        }
+
         $file = 'mapIcon';
 
         foreach ($folders as $folder) {
