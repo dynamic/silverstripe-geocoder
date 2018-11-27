@@ -33,7 +33,11 @@ class AddressDataExtension extends DataExtension
      */
     public function updateCMSFields(FieldList $fields)
     {
-        $tab_name = Config::inst()->get(AddressDataExtension::class, 'address_tab_name');
+        if ($this->owner->config()->address_tab_name) {
+            $tab_name = $this->owner->config()->address_tab_name;
+        } else {
+            $tab_name = Config::inst()->get(AddressDataExtension::class, 'address_tab_name');
+        }
 
         $fields->addFieldsToTab('Root.' . $tab_name, [
             TextField::create('Address'),
@@ -116,9 +120,10 @@ class AddressDataExtension extends DataExtension
      */
     public static function getMapStyleJSONPath()
     {
-        if ($styleJSON =  static::getMapStyleJSON()) {
+        if ($styleJSON = static::getMapStyleJSON()) {
             return BASE_PATH . DIRECTORY_SEPARATOR . $styleJSON;
         }
+
         return false;
     }
 
@@ -148,7 +153,7 @@ class AddressDataExtension extends DataExtension
             }
         }
 
-       return false;
+        return false;
     }
 
     /**
@@ -217,6 +222,7 @@ class AddressDataExtension extends DataExtension
             $styleString = substr($styleString, 0, strlen($styleString) - 1);
             $params[] = 'style=' . $styleString;
         }
+
         return implode("&", $params);
     }
 
