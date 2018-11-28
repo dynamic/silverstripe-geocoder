@@ -252,7 +252,7 @@ class AddressDataExtension extends DataExtension
     public function onBeforeWrite()
     {
         parent::onBeforeWrite();
-        if ($this->hasAddress()) {
+        if ($this->hasAddress() && !$this->owner->config()->get('disable_geocoding')) {
             if (!$this->isAddressChanged()) {
                 return;
             }
