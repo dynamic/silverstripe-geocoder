@@ -40,6 +40,12 @@ Dynamic\SilverStripeGeocoder\GoogleGeocoder:
 ### AddressDataExtension
 The AddressDataExtension adds `Address`, `Address2`, `City`, `State`, `PostalCode`, `Country`, `Lat`, and `Lng` fields.
 The `Lat` and `Lng` fields are read only in the cms and are automatically generated on write.
+Geocoding can be disabled on a model basis by setting `disable_geocoding` to true.
+
+```yml
+SilverStripe\ORM\DataObject:
+    disable_geocoding: true
+```
 
 #### Static Map Image
 In addition to fields the AddressDataExtension also adds a method for rendering a static map image.
@@ -77,13 +83,13 @@ images/
 The DistanceDataExtension should be used in conjunction with the AddressDataExtension. 
 The only time it is viable by itself is if the extended DataObject has `Lat` and `Lng` fields.
 
-The DistanceDataExtension will add a psuedo field for distance away from an address to a DataObject.
+The DistanceDataExtension will add a pseudo field for distance away from an address to a DataObject.
 The address to check the distance to is from the current controller initially.
 This can be changed by implementing `updateAddressValue($address)` on the DataObject or an extension.
 
 ```php
 /**
- * Allways get the distance from Neuschwanstein Castle
+ * Always get the distance from Neuschwanstein Castle
  */
 public function updateAddressValue(&$address) {
     $address = 'Neuschwansteinstraße 20, 87645 Schwangau, Germany';
