@@ -109,7 +109,7 @@ class AddressDataExtension extends DataExtension
             'Address' => rawurlencode($this->getFullAddress()),
             'Style' => $style,
             'Icon' => $icon,
-            'Key' => Config::inst()->get(GoogleGeocoder::class, 'geocoder_api_key'),
+            'Key' => Config::inst()->get(GoogleGeocoder::class, 'map_api_key'),
         ]);
 
         return $data->renderWith('Dynamic/Geocoder/AddressMap');
