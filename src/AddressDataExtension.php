@@ -4,7 +4,6 @@ namespace Dynamic\SilverStripeGeocoder;
 
 use Dynamic\CountryDropdownField\Fields\CountryDropdownField;
 use SilverStripe\Control\Director;
-use Dynamic\CountryDropdownField\Fields\CountryDropdownField;
 use Dynamic\StateDropdownField\Fields\StateDropdownField;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Manifest\ModuleResourceLoader;
