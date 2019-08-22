@@ -2,6 +2,7 @@
 
 namespace Dynamic\SilverStripeGeocoder;
 
+use Dynamic\CountryDropdownField\Fields\CountryDropdownField;
 use SilverStripe\Control\Director;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Manifest\ModuleResourceLoader;
@@ -45,7 +46,7 @@ class AddressDataExtension extends DataExtension
             TextField::create('City'),
             TextField::create('State'),
             TextField::create('PostalCode'),
-            TextField::create('Country'),
+            CountryDropdownField::create('Country'),
             ReadonlyField::create('Lat'),
             ReadonlyField::create('Lng'),
         ]);
