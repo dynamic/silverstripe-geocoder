@@ -211,8 +211,10 @@ class AddressDataExtension extends DataExtension
         foreach (json_decode($mapStyleJson, true) as $style) {
             $styleString = '';
             if (isset($style['stylers']) && count($style['stylers']) > 0) {
-                $styleString .= (isset($style['featureType']) ? ('feature:' . $style['featureType']) : 'feature:all') . '|';
-                $styleString .= (isset($style['elementType']) ? ('element:' . $style['elementType']) : 'element:all') . '|';
+                $styleString .= (isset($style['featureType']) ?
+                        ('feature:' . $style['featureType']) : 'feature:all') . '|';
+                $styleString .= (isset($style['elementType']) ?
+                        ('element:' . $style['elementType']) : 'element:all') . '|';
                 foreach ($style['stylers'] as $styler) {
                     $propertyname = array_keys($styler)[0];
                     $propertyval = str_replace('#', '0x', $styler[$propertyname]);
