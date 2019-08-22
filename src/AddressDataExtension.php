@@ -41,7 +41,7 @@ class AddressDataExtension extends DataExtension
 
         $fields->addFieldsToTab('Root.' . $tab_name, [
             TextField::create('Address'),
-            TextField::create('Address2'),
+            TextField::create('Address2', 'Address 2'),
             TextField::create('City'),
             TextField::create('State'),
             TextField::create('PostalCode'),
