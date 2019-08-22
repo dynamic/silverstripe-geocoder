@@ -54,7 +54,9 @@ class AddressDataExtensionTest extends SapphireTest
     public function testMapStylesUrlArgs()
     {
         $object = $this->objFromFixture(TestLocation::class, 'dynamic');
-        $json = '[{"elementType":"geometry","stylers":[{"color":"#ebe3cd"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#c9b2a6"}]}]';
+        $json = '[{"elementType":"geometry","stylers":[{"color":"#ebe3cd"}]},{"featureType":"administrative",
+            "elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":
+            "geometry.stroke","stylers":[{"color":"#c9b2a6"}]}]';
         $args = $object->mapStylesURLArgs($json);
 
         $expected = 'style=feature:all|element:geometry|color:0xebe3cd&style=feature:administrative|element:geometry|visibility:off&style=feature:administrative|element:geometry.stroke|color:0xc9b2a6';
@@ -66,7 +68,6 @@ class AddressDataExtensionTest extends SapphireTest
      */
     public function testGetFullAddress()
     {
-
     }
 
     /**
@@ -74,6 +75,5 @@ class AddressDataExtensionTest extends SapphireTest
      */
     public function testHasAddress()
     {
-
     }
 }
