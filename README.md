@@ -25,7 +25,7 @@ SilverStripe wrapper for [Geocoder](https://github.com/geocoder-php/Geocoder)
 
 in `mysite/_config/config.yml`:
 
-```yml
+```yaml
 SilverStripe\ORM\DataObject:
   extensions:
     - Dynamic\SilverStripeGeocoder\AddressDataExtension
@@ -49,6 +49,12 @@ SilverStripe\ORM\DataObject:
 
 #### Static Map Image
 In addition to fields the AddressDataExtension also adds a method for rendering a static map image.
+An additional api key is required.
+```yaml
+Dynamic\SilverStripeGeocoder\GoogleGeocoder:
+  geocoder_api_key: BACK_END_API_KEY
+  map_api_key: FRONT_END_API_KEY
+```
 Using `$AddressMap` in a template will render the map.
 `$AddressMap` also has options to easily modify the width, height, and scale of the map. `$AddressMap(320, 240, 1)`
 
