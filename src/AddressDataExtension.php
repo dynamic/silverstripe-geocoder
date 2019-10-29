@@ -83,7 +83,6 @@ class AddressDataExtension extends DataExtension
             $this->owner->Address
             && $this->owner->City
             && $this->owner->State
-            && $this->owner->PostalCode
         );
     }
 
