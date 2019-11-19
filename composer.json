@@ -14,7 +14,6 @@
     "license": "BSD-3-Clause",
     "require": {
         "dynamic/silverstripe-country-dropdown-field": "^1.0",
-        "dynamic/state-dropdown-field": "^2.0",
         "silverstripe/recipe-cms": "^4.0",
         "silverstripe/vendor-plugin": "^1.0",
         "willdurand/geocoder": "v3.3.0"
