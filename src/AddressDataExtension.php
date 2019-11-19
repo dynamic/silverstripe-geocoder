@@ -45,8 +45,7 @@ class AddressDataExtension extends DataExtension
             TextField::create('Address'),
             TextField::create('Address2', 'Address 2'),
             TextField::create('City'),
-            StateDropdownField::create('State')
-                ->setEmptyString('Select State'),
+            TextField::create('State', 'State/Province'),
             TextField::create('PostalCode'),
             CountryDropdownField::create('Country')
                 ->setEmptyString('Select Country'),
