@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.1.0](https://github.com/dynamic/silverstripe-geocoder/tree/1.1.0) (2019-11-19)
+
+[Full Changelog](https://github.com/dynamic/silverstripe-geocoder/compare/1.0.2...1.1.0)
+
+**Implemented enhancements:**
+
+- REFACTOR Remove StateDropdownField as a default in CMS [\#45](https://github.com/dynamic/silverstripe-geocoder/issues/45)
+
+**Fixed bugs:**
+
+- REFACTOR AddressDataExtension::hasAddress\(\) - allow for State, PostalCode or Country [\#46](https://github.com/dynamic/silverstripe-geocoder/issues/46)
+
+**Closed issues:**
+
+- 1.2.0 [\#48](https://github.com/dynamic/silverstripe-geocoder/issues/48)
+- FEATURE Github Issue templates [\#44](https://github.com/dynamic/silverstripe-geocoder/issues/44)
+
+**Merged pull requests:**
+
+- REFACTOR AddressDataExtension - remove StateDropdownField [\#51](https://github.com/dynamic/silverstripe-geocoder/pull/51) ([jsirish](https://github.com/jsirish))
+- DOCS add Github templates [\#50](https://github.com/dynamic/silverstripe-geocoder/pull/50) ([jsirish](https://github.com/jsirish))
+- REFACTOR AddressDataExtension::hasAddress\(\) [\#49](https://github.com/dynamic/silverstripe-geocoder/pull/49) ([jsirish](https://github.com/jsirish))
+
 ## [1.0.2](https://github.com/dynamic/silverstripe-geocoder/tree/1.0.2) (2019-10-29)
 
 [Full Changelog](https://github.com/dynamic/silverstripe-geocoder/compare/1.0.1...1.0.2)
