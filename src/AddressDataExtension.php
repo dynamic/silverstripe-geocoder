@@ -79,11 +79,14 @@ class AddressDataExtension extends DataExtension
      */
     public function hasAddress()
     {
-        return (
+        $address =
             $this->owner->Address
             && $this->owner->City
-            && $this->owner->State
-        );
+            && ($this->owner->State || $this->owner->PostalCode || $this->owner->Country);
+
+        $this->owner->extend('updateHasAddress', $address);
+
+        return $address;
     }
 
     /**
