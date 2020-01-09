@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.1](https://github.com/dynamic/silverstripe-geocoder/tree/1.1.1) (2020-01-09)
+
+[Full Changelog](https://github.com/dynamic/silverstripe-geocoder/compare/1.1.0...1.1.1)
+
+**Implemented enhancements:**
+
+- REFACTOR Geocoding - don't attempt to generate coordinates if geocoding key is missing [\#47](https://github.com/dynamic/silverstripe-geocoder/issues/47)
+
+**Merged pull requests:**
+
+- BUGFIX AddressDataExtension onBeforeWrite - check if geocoding key is… [\#52](https://github.com/dynamic/silverstripe-geocoder/pull/52) ([jsirish](https://github.com/jsirish))
+
 ## [1.1.0](https://github.com/dynamic/silverstripe-geocoder/tree/1.1.0) (2019-11-19)
 
 [Full Changelog](https://github.com/dynamic/silverstripe-geocoder/compare/1.0.2...1.1.0)
