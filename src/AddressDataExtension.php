@@ -67,7 +67,7 @@ class AddressDataExtension extends DataExtension
             $this->owner->City,
             $this->owner->State,
             $this->owner->PostalCode,
-            $this->owner->Country,
+            strtoupper($this->owner->Country),
         ];
 
         return implode(', ', array_filter($parts));
@@ -259,7 +259,8 @@ class AddressDataExtension extends DataExtension
     public function onBeforeWrite()
     {
         parent::onBeforeWrite();
-        if ($this->hasAddress() && !$this->owner->config()->get('disable_geocoding')) {
+        if ($this->hasAddress() && !$this->owner->config()->get('disable_geocoding')
+            && Config::inst()->get(GoogleGeocoder::class, 'geocoder_api_key')) {
             if (!$this->isAddressChanged()) {
                 return;
             }
