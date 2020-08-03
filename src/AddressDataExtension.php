@@ -7,7 +7,10 @@ use SilverStripe\Control\Director;
 use Dynamic\StateDropdownField\Fields\StateDropdownField;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Manifest\ModuleResourceLoader;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\CompositeField;
 use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\ReadonlyField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\DataExtension;
@@ -26,6 +29,7 @@ class AddressDataExtension extends DataExtension
         'State' => 'Varchar(64)',
         'PostalCode' => 'Varchar(10)',
         'Country' => 'Varchar(2)',
+        'LatLngOverride' => 'Boolean',
         'Lat' => 'Decimal(10,7)',
         'Lng' => 'Decimal(10,7)',
     ];
@@ -41,6 +45,12 @@ class AddressDataExtension extends DataExtension
             $tab_name = Config::inst()->get(AddressDataExtension::class, 'address_tab_name');
         }
 
+        $fields->removeByName([
+            'LatLngOverride',
+            'Lat',
+            'Lng',
+        ]);
+
         $fields->addFieldsToTab('Root.' . $tab_name, [
             TextField::create('Address'),
             TextField::create('Address2', 'Address 2'),
@@ -49,9 +59,26 @@ class AddressDataExtension extends DataExtension
             TextField::create('PostalCode'),
             CountryDropdownField::create('Country')
                 ->setEmptyString('Select Country'),
-            ReadonlyField::create('Lat'),
-            ReadonlyField::create('Lng'),
         ]);
+
+        $compositeField = CompositeField::create();
+        $compositeField->push($overrideField = CheckboxField::create('LatLngOverride', 'Override Latitude and Longitude?'));
+        $overrideField->setDescription('Check this box and save to be able to edit the latitude and longitude manually.');
+
+        if ($this->owner->Lng && $this->owner->Lat) {
+            $googleMapURL = 'https://maps.google.com/?q='.$this->owner->Lat.','.$this->owner->Lng;
+            $googleMapDiv = '<div class="field"><label class="left" for="Form_EditForm_MapURL_Readonly">Google Map</label><div class="middleColumn"><a href="'.$googleMapURL.'" target="_blank">'.$googleMapURL.'</a></div></div>';
+            $compositeField->push(LiteralField::create('MapURL_Readonly', $googleMapDiv));
+        }
+        if ($this->owner->LatLngOverride) {
+            $compositeField->push(TextField::create('Lat', 'Lat'));
+            $compositeField->push(TextField::create('Lng', 'Lng'));
+        } else {
+            $compositeField->push(ReadonlyField::create('Lat_Readonly', 'Lat', $this->owner->Lat));
+            $compositeField->push(ReadonlyField::create('Lng_Readonly', 'Lng', $this->owner->Lng));
+        }
+
+        $fields->addFieldToTab('Root.' . $tab_name, $compositeField);
     }
 
     /**
@@ -262,6 +289,9 @@ class AddressDataExtension extends DataExtension
         if ($this->hasAddress() && !$this->owner->config()->get('disable_geocoding')
             && Config::inst()->get(GoogleGeocoder::class, 'geocoder_api_key')) {
             if (!$this->isAddressChanged()) {
+                return;
+            }
+            if ($this->owner->LatLngOverride) {
                 return;
             }
             if ($address = $this->getFullAddress()) {

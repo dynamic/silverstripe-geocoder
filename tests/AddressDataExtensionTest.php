@@ -2,6 +2,7 @@
 
 namespace Dynamic\SilverStripeGeocoder\Tests;
 
+use Dynamic\SilverStripeGeocoder\AddressDataExtension;
 use Dynamic\SilverStripeGeocoder\TestOnly\TestLocation;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\Forms\FieldList;
@@ -18,6 +19,15 @@ class AddressDataExtensionTest extends SapphireTest
      */
     protected static $extra_dataobjects = [
         TestLocation::class,
+    ];
+
+    /**
+     * @var \string[][] 
+     */
+    protected static $required_extensions = [
+        TestLocation::class => [
+            AddressDataExtension::class,
+        ],
     ];
 
     /**
