@@ -22,7 +22,7 @@ class AddressDataExtensionTest extends SapphireTest
     ];
 
     /**
-     * @var \string[][] 
+     * @var \string[][]
      */
     protected static $required_extensions = [
         TestLocation::class => [
