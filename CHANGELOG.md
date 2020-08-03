@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/dynamic/silverstripe-geocoder/tree/1.2.0) (2020-08-03)
+
+[Full Changelog](https://github.com/dynamic/silverstripe-geocoder/compare/1.1.1...1.2.0)
+
+**Closed issues:**
+
+- FEATURE Allow user to override lat and lng [\#53](https://github.com/dynamic/silverstripe-geocoder/issues/53)
+
+**Merged pull requests:**
+
+- FEATURE LatLngOverride [\#54](https://github.com/dynamic/silverstripe-geocoder/pull/54) ([jsirish](https://github.com/jsirish))
+
 ## [1.1.1](https://github.com/dynamic/silverstripe-geocoder/tree/1.1.1) (2020-01-09)
 
 [Full Changelog](https://github.com/dynamic/silverstripe-geocoder/compare/1.1.0...1.1.1)
