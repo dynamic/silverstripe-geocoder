@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/dynamic/silverstripe-geocoder/tree/1.3.0) (2022-07-26)
+
+## What's Changed
+* REFACTOR PHP8 compatibility by @jsirish in https://github.com/dynamic/silverstripe-geocoder/pull/55
+
+
+**Full Changelog**: https://github.com/dynamic/silverstripe-geocoder/compare/1.2.0...1.3.0
+
 ## [1.2.0](https://github.com/dynamic/silverstripe-geocoder/tree/1.2.0) (2020-08-03)
 
 [Full Changelog](https://github.com/dynamic/silverstripe-geocoder/compare/1.1.1...1.2.0)
