@@ -3,8 +3,9 @@
     "description": "SilverStripe wrapper for Geocoder",
     "authors": [
         {
-            "name": "Dynamic, Inc",
-            "email": "dev@dy.ag"
+            "name": "Dynamic",
+            "email": "dev@dynamicagency.com",
+            "homepage": "http://www.dynamicagency.com"
         }
     ],
     "keywords": [
@@ -14,20 +15,18 @@
     "license": "BSD-3-Clause",
     "require": {
         "dynamic/silverstripe-country-dropdown-field": "^1.0",
-        "silverstripe/recipe-cms": "^4.0",
-        "silverstripe/vendor-plugin": "^1.0",
-        "willdurand/geocoder": "v3.3.0"
+        "willdurand/geocoder": "^4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.7",
-        "squizlabs/php_codesniffer": "^3.0",
-        "phpmd/phpmd": "^2.6",
-        "sebastian/phpcpd": "^3.0",
-        "phploc/phploc": "^4.0",
-        "pdepend/pdepend": "^2.5",
-        "theseer/phpdox": "^0.11.0"
+        "silverstripe/recipe-testing": "^2",
+        "squizlabs/php_codesniffer": "^3.0"
     },
     "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "silverstripe/vendor-plugin": true,
+            "silverstripe/recipe-plugin": true
+        },
         "process-timeout": 600
     },
     "autoload": {
