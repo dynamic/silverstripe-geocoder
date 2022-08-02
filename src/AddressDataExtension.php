@@ -6,6 +6,7 @@ use Dynamic\CountryDropdownField\Fields\CountryDropdownField;
 use SilverStripe\Control\Director;
 use Dynamic\StateDropdownField\Fields\StateDropdownField;
 use SilverStripe\Core\Config\Config;
+use SilverStripe\Core\Environment;
 use SilverStripe\Core\Manifest\ModuleResourceLoader;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\CompositeField;
@@ -133,6 +134,9 @@ class AddressDataExtension extends DataExtension
         }
 
         $icon = Director::absoluteURL(static::getIconImage(false));
+        $key = Environment::getEnv('DYNAMIC_MAP_API_KEY') ?
+            Environment::getEnv('DYNAMIC_MAP_API_KEY')
+            : Config::inst()->get(GoogleGeocoder::class, 'map_api_key');
 
         $data = $this->owner->customise([
             'Width' => $width,
@@ -141,7 +145,7 @@ class AddressDataExtension extends DataExtension
             'Address' => rawurlencode($this->getFullAddress()),
             'Style' => $style,
             'Icon' => $icon,
-            'Key' => Config::inst()->get(GoogleGeocoder::class, 'map_api_key'),
+            'Key' => $key,
         ]);
 
         return $data->renderWith('Dynamic/Geocoder/AddressMap');
