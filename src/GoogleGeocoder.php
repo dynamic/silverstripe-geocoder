@@ -2,7 +2,7 @@
 
 namespace Dynamic\SilverStripeGeocoder;
 
-use \Geocoder\Provider\GoogleMaps;
+use Geocoder\Provider\GoogleMaps\GoogleMaps;
 use \SilverStripe\Core\Config\Config;
 
 /**
@@ -27,15 +27,14 @@ class GoogleGeocoder
      */
     public function __construct($address)
     {
-        $adapter  = new GeocoderAdapter();
-        $adapter = $adapter->getAdapter();
-        $geocoder = new GoogleMaps(
-            $adapter,
+        $httpClient  = new GeocoderAdapter();
+        $httpClient = $httpClient->getAdapter();
+        $provider = new \Geocoder\Provider\GoogleMaps\GoogleMaps(
+            $httpClient,
             null,
-            null,
-            true,
             Config::inst()->get(GoogleGeocoder::class, 'geocoder_api_key')
         );
+        $geocoder = new \Geocoder\StatefulGeocoder($provider, 'en');
 
         $this->setClient($geocoder);
         $this->setResults($address);

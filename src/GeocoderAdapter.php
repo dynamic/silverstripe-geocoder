@@ -22,9 +22,11 @@ class GeocoderAdapter
     public function __construct($adapter = null)
     {
         if ($adapter === null) {
-            $adapter = new CurlHttpAdapter();
+            $adapter = new \GuzzleHttp\Client();
         }
         $this->setAdapter($adapter);
+
+
     }
 
     /**
