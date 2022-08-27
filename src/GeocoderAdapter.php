@@ -25,8 +25,6 @@ class GeocoderAdapter
             $adapter = new \GuzzleHttp\Client();
         }
         $this->setAdapter($adapter);
-
-
     }
 
     /**
