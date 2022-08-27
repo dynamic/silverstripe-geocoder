@@ -15,7 +15,8 @@
     "license": "BSD-3-Clause",
     "require": {
         "dynamic/silverstripe-country-dropdown-field": "^1.0",
-        "willdurand/geocoder": "^4.0"
+        "geocoder-php/google-maps-provider": "^4.7",
+        "guzzlehttp/guzzle": "^7.4"
     },
     "require-dev": {
         "silverstripe/recipe-testing": "^2",
