@@ -94,8 +94,11 @@ class AddressDataExtension extends DataExtension
             $this->owner->City,
             $this->owner->State,
             $this->owner->PostalCode,
-            strtoupper($this->owner->Country),
         ];
+        
+        if ($this->owner->Country !== null) {
+            $parts[] = strtoupper($this->owner->Country);
+        }
 
         return implode(', ', array_filter($parts));
     }
