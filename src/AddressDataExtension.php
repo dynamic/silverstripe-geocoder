@@ -66,8 +66,8 @@ class AddressDataExtension extends DataExtension
         $overrideField->setDescription('Check this box and save to be able to edit the latitude and longitude manually.');
 
         if ($this->owner->Lng && $this->owner->Lat) {
-            $googleMapURL = 'https://maps.google.com/?q='.$this->owner->Lat.','.$this->owner->Lng;
-            $googleMapDiv = '<div class="field"><label class="left" for="Form_EditForm_MapURL_Readonly">Google Map</label><div class="middleColumn"><a href="'.$googleMapURL.'" target="_blank">'.$googleMapURL.'</a></div></div>';
+            $googleMapURL = 'https://maps.google.com/?q=' . $this->owner->Lat . ',' . $this->owner->Lng;
+            $googleMapDiv = '<div class="field"><label class="left" for="Form_EditForm_MapURL_Readonly">Google Map</label><div class="middleColumn"><a href="' . $googleMapURL . '" target="_blank">' . $googleMapURL . '</a></div></div>';
             $compositeField->push(LiteralField::create('MapURL_Readonly', $googleMapDiv));
         }
         if ($this->owner->LatLngOverride) {
@@ -94,8 +94,11 @@ class AddressDataExtension extends DataExtension
             $this->owner->City,
             $this->owner->State,
             $this->owner->PostalCode,
-            strtoupper($this->owner->Country),
         ];
+
+        if ($this->owner->Country !== null) {
+            $parts[] = strtoupper($this->owner->Country);
+        }
 
         return implode(', ', array_filter($parts));
     }
@@ -190,8 +193,8 @@ class AddressDataExtension extends DataExtension
 
     /**
      * Gets the maker icon image
-     * @var boolean $svg if svgs should be included
      * @return null|string
+     * @var boolean $svg if svgs should be included
      */
     public static function getIconImage($svg = true)
     {
