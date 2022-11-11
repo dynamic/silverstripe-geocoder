@@ -299,7 +299,7 @@ class AddressDataExtension extends DataExtension
             }
             if ($address = $this->getFullAddress()) {
                 $geocoder = new GoogleGeocoder($address);
-                $response = $geocoder->getResult();                
+                $response = $geocoder->getResult();
                 $this->owner->Lat = $response->getCoordinates()->getLatitude();
                 $this->owner->Lng = $response->getCoordinates()->getLongitude();
             }
