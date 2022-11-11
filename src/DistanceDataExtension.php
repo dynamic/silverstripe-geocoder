@@ -35,8 +35,8 @@ class DistanceDataExtension extends DataExtension
         if ($address) { // on frontend
             $geocoder = new GoogleGeocoder($address);
             $response = $geocoder->getResult();
-            $this->owner->Lat = $response->getCoordinates()->getLatitude();
-            $this->owner->Lng = $response->getCoordinates()->getLongitude();
+            $Lat = $this->owner->Lat = $response->getCoordinates()->getLatitude();
+            $Lng = $this->owner->Lng = $response->getCoordinates()->getLongitude();
 
             $query
                 ->addSelect(array(
