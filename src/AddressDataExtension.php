@@ -300,10 +300,8 @@ class AddressDataExtension extends DataExtension
             if ($address = $this->getFullAddress()) {
                 $geocoder = new GoogleGeocoder($address);
                 $response = $geocoder->getResult();
-                $dumper = new \Geocoder\Dumper\GeoArray();
-                $result = $dumper->dump($response);
-                $this->owner->Lat = $result['geometry']['coordinates'][0];
-                $this->owner->Lng = $result['geometry']['coordinates'][1];
+                $this->owner->Lat = $response->getCoordinates()->getLatitude();
+                $this->owner->Lng = $response->getCoordinates()->getLongitude();
             }
         }
     }
