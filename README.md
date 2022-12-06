@@ -41,7 +41,7 @@ SilverStripe\ORM\DataObject:
 
 ### Google API Keys
 
-You'll also need to set two API keys. Each key needs to have specific API libraries enabled:
+You'll also need to set two [Google API keys](https://developers.google.com/maps/documentation/javascript/get-api-key). Each key needs to have specific API libraries enabled:
 * `geocoder_api_key`
   * Geocoding API
 * `map_api_key`
