@@ -29,14 +29,29 @@ See [License](license.md)
 
 ## Example usage
 
-in `mysite/_config/config.yml`:
+### Getting Started
 
+in `mysite/_config/config.yml`, apply the DataExtensions to your DataObject:
 ```yaml
 SilverStripe\ORM\DataObject:
   extensions:
     - Dynamic\SilverStripeGeocoder\AddressDataExtension
     - Dynamic\SilverStripeGeocoder\DistanceDataExtension
+```
 
+### Google API Keys
+
+You'll also need to set two API keys. Each key needs to have specific API libraries enabled:
+* `geocoder_api_key`
+  * Geocoding API
+* `map_api_key`
+  * Maps JavaScript API
+  *  Maps Static API
+
+This is primarily due to the restriction rules on Google API keys. The Geocoding key should be tied to the webserver's public IP, while the Maps API needs to be restricted to the website's domain name.
+Restriction rules help to prevent unauthorized users to use your keys, which can quickly use up your API requests quota.
+
+```yaml
 Dynamic\SilverStripeGeocoder\GoogleGeocoder:
   geocoder_api_key: 'your-key-here'
   map_api_key: 'your-key-here'
@@ -55,17 +70,12 @@ SilverStripe\ORM\DataObject:
 ```
 
 #### Static Map Image
-In addition to fields the AddressDataExtension also adds a method for rendering a static map image.
-An additional api key is required.
-```yaml
-Dynamic\SilverStripeGeocoder\GoogleGeocoder:
-  geocoder_api_key: BACK_END_API_KEY
-  map_api_key: FRONT_END_API_KEY
-```
+
 Using `$AddressMap` in a template will render the map.
 `$AddressMap` also has options to easily modify the width, height, and scale of the map. `$AddressMap(320, 240, 1)`
 
 ##### Map Style
+
 The map can be styled by adding a `mapStyle.json` in any of the following folders in a theme:
 ```
 client/dist/js/
@@ -76,7 +86,8 @@ src/javascript/thirdparty
 js/
 javascript/
 ```
-styles can be generated using an online service like [Styling Wizard: Google Maps APIs](https://mapstyle.withgoogle.com/)
+
+Styles can be generated using an online service like [Styling Wizard: Google Maps APIs](https://mapstyle.withgoogle.com/)
 
 ##### Marker Image
 **This does not work on local due to google needing to download the image off the server.**
@@ -108,8 +119,6 @@ public function updateAddressValue(&$address) {
     $address = 'Neuschwansteinstraße 20, 87645 Schwangau, Germany';
 }
 ```
-
-See the [docs/en](docs/en/index.md) folder.
 
 ## Maintainers
  *  [Dynamic](http://www.dynamicagency.com) (<dev@dynamicagency.com>)
