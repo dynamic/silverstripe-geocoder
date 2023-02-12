@@ -36,6 +36,7 @@
     "config": {
         "allow-plugins": {
             "composer/installers": true,
+            "php-http/discovery": true,
             "silverstripe/vendor-plugin": true,
             "silverstripe/recipe-plugin": true
         },
