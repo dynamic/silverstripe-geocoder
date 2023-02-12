@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.4](https://github.com/dynamic/silverstripe-geocoder/tree/2.0.4) (2023-02-12)
+* CI workflow to SS GHA by @jsirish in https://github.com/dynamic/silverstripe-geocoder/pull/68
+* REFACTOR README additions by @jsirish in https://github.com/dynamic/silverstripe-geocoder/pull/67
+* REFACTOR allow country dropdown field 1 or 2 by @jsirish in https://github.com/dynamic/silverstripe-geocoder/pull/69
+
+
+**Full Changelog**: https://github.com/dynamic/silverstripe-geocoder/compare/2.0.3...2.0.4
+
 ## [1.3.0](https://github.com/dynamic/silverstripe-geocoder/tree/1.3.0) (2022-07-26)
 
 ## What's Changed
