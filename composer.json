@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "dynamic/silverstripe-country-dropdown-field": "^1.0",
+        "dynamic/silverstripe-country-dropdown-field": "^1 || ^2",
         "geocoder-php/google-maps-provider": "^4.7",
         "guzzlehttp/guzzle": "^7.4",
         "php-http/guzzle7-adapter": "^1.0",
@@ -36,6 +36,7 @@
     "config": {
         "allow-plugins": {
             "composer/installers": true,
+            "php-http/discovery": true,
             "silverstripe/vendor-plugin": true,
             "silverstripe/recipe-plugin": true
         },
