@@ -17,6 +17,20 @@ use SilverStripe\ORM\DataExtension;
 use SilverStripe\View\SSViewer;
 use SilverStripe\View\ThemeResourceLoader;
 
+/**
+ * Class \Dynamic\SilverStripeGeocoder\AddressDataExtension
+ *
+ * @property CompanyAddress|AddressDataExtension $owner
+ * @property string $Address
+ * @property string $Address2
+ * @property string $City
+ * @property string $State
+ * @property string $PostalCode
+ * @property string $Country
+ * @property bool $LatLngOverride
+ * @property float $Lat
+ * @property float $Lng
+ */
 class AddressDataExtension extends DataExtension
 {
     /**
