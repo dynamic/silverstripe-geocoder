@@ -12,8 +12,8 @@ SilverStripe wrapper for [Geocoder](https://github.com/geocoder-php/Geocoder)
 
 ## Requirements
 
-- Silverstripe ^4.0
-- dynamic/silverstripe-country-dropdown-field ^1.0
+- Silverstripe ^5
+- dynamic/silverstripe-country-dropdown-field ^2
 - geocoder-php/google-maps-provider ^4.7
 - guzzlehttp/guzzle ^7.4
 - php-http/guzzle7-adapter ^1.0
