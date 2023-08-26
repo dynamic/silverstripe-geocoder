@@ -16,14 +16,15 @@
         }
     ],
     "require": {
-        "dynamic/silverstripe-country-dropdown-field": "^1 || ^2",
+        "dynamic/silverstripe-country-dropdown-field": "^2",
         "geocoder-php/google-maps-provider": "^4.7",
         "guzzlehttp/guzzle": "^7.4",
         "php-http/guzzle7-adapter": "^1.0",
-        "php-http/message": "^1.13"
+        "php-http/message": "^1.13",
+        "silverstripe/recipe-core": "^5.0"
     },
     "require-dev": {
-        "silverstripe/recipe-testing": "^2"
+        "silverstripe/recipe-testing": "^3"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -41,6 +42,11 @@
             "silverstripe/recipe-plugin": true
         },
         "process-timeout": 600
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.x-dev"
+        }
     },
     "scripts": {
         "lint": "vendor/bin/phpcs src/ tests/",
