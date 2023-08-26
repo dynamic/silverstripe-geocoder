@@ -1,5 +1,10 @@
 # Changelog
 
+## [3.0.0](https://github.com/dynamic/silverstripe-geocoder/tree/3.0.0) (2023-08-26)
+* REFACTOR Silverstripe 5 compatibility by @jsirish in https://github.com/dynamic/silverstripe-geocoder/pull/70
+
+**Full Changelog**: https://github.com/dynamic/silverstripe-geocoder/compare/2.0.4...3.0.0
+
 ## [2.0.4](https://github.com/dynamic/silverstripe-geocoder/tree/2.0.4) (2023-08-26)
 * CI workflow to SS GHA by @jsirish in https://github.com/dynamic/silverstripe-geocoder/pull/68
 * REFACTOR README additions by @jsirish in https://github.com/dynamic/silverstripe-geocoder/pull/67
