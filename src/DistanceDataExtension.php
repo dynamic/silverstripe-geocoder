@@ -8,6 +8,11 @@ use SilverStripe\ORM\Queries\SQLSelect;
 use SilverStripe\ORM\DataQuery;
 use SilverStripe\Control\Controller;
 
+/**
+ * Class \Dynamic\SilverStripeGeocoder\DistanceDataExtension
+ *
+ * @property DistanceDataExtension $owner
+ */
 class DistanceDataExtension extends DataExtension
 {
     /**
