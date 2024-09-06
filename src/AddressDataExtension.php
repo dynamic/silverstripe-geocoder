@@ -53,15 +53,15 @@ class AddressDataExtension extends DataExtension
      */
     public function updateFieldLabels(&$labels)
     {
-        $labels['Address'] = _t(__CLASS__ . '.AddressLabel', 'Address3');
-        $labels['Address2'] = _t(__CLASS__ . '.Address2Label', 'Address 23');
-        $labels['City'] = _t(__CLASS__ . '.CityLabel', 'City3');
-        $labels['State'] = _t(__CLASS__ . '.StateLabel', 'State/Province3');
-        $labels['PostalCode'] = _t(__CLASS__ . '.PostalCodeLabel', 'Postal Code3');
-        $labels['Country'] = _t(__CLASS__ . '.CountryLabel', 'Country3');
-        $labels['LatLngOverride'] = _t(__CLASS__ . '.LatLngOverrideLabel', 'Override Latitude and Longitude?3');
-        $labels['Lat'] = _t(__CLASS__ . '.LatLabel', 'Latitude3');
-        $labels['Lng'] = _t(__CLASS__ . '.LngLabel', 'Longitude3');
+        $labels['Address'] = _t(__CLASS__ . '.AddressLabel', 'Address');
+        $labels['Address2'] = _t(__CLASS__ . '.Address2Label', 'Address 2');
+        $labels['City'] = _t(__CLASS__ . '.CityLabel', 'City');
+        $labels['State'] = _t(__CLASS__ . '.StateLabel', 'State/Province');
+        $labels['PostalCode'] = _t(__CLASS__ . '.PostalCodeLabel', 'Postal Code');
+        $labels['Country'] = _t(__CLASS__ . '.CountryLabel', 'Country');
+        $labels['LatLngOverride'] = _t(__CLASS__ . '.LatLngOverrideLabel', 'Override Latitude and Longitude?');
+        $labels['Lat'] = _t(__CLASS__ . '.LatLabel', 'Latitude');
+        $labels['Lng'] = _t(__CLASS__ . '.LngLabel', 'Longitude');
     }
 
     /**
