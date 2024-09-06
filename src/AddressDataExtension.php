@@ -20,7 +20,7 @@ use SilverStripe\View\ThemeResourceLoader;
 /**
  * Class \Dynamic\SilverStripeGeocoder\AddressDataExtension
  *
- * @property CompanyAddress|AddressDataExtension $owner
+ * @property AddressDataExtension $owner
  * @property string $Address
  * @property string $Address2
  * @property string $City
@@ -49,6 +49,22 @@ class AddressDataExtension extends DataExtension
     ];
 
     /**
+     * @var array
+     */
+    public function updateFieldLabels(&$labels)
+    {
+        $labels['Address'] = _t(__CLASS__ . '.AddressLabel', 'Address3');
+        $labels['Address2'] = _t(__CLASS__ . '.Address2Label', 'Address 23');
+        $labels['City'] = _t(__CLASS__ . '.CityLabel', 'City3');
+        $labels['State'] = _t(__CLASS__ . '.StateLabel', 'State/Province3');
+        $labels['PostalCode'] = _t(__CLASS__ . '.PostalCodeLabel', 'Postal Code3');
+        $labels['Country'] = _t(__CLASS__ . '.CountryLabel', 'Country3');
+        $labels['LatLngOverride'] = _t(__CLASS__ . '.LatLngOverrideLabel', 'Override Latitude and Longitude?3');
+        $labels['Lat'] = _t(__CLASS__ . '.LatLabel', 'Latitude3');
+        $labels['Lng'] = _t(__CLASS__ . '.LngLabel', 'Longitude3');
+    }
+
+    /**
      * @param FieldList $fields
      */
     public function updateCMSFields(FieldList $fields)
@@ -66,18 +82,28 @@ class AddressDataExtension extends DataExtension
         ]);
 
         $fields->addFieldsToTab('Root.' . $tab_name, [
-            TextField::create('Address'),
-            TextField::create('Address2', 'Address 2'),
-            TextField::create('City'),
-            TextField::create('State', 'State/Province'),
-            TextField::create('PostalCode'),
+            TextField::create('Address')
+                ->setTitle($this->owner->fieldLabel('Address')),
+            TextField::create('Address2', 'Address 2')
+                ->setTitle($this->owner->fieldLabel('Address2')),
+            TextField::create('City')
+                ->setTitle($this->owner->fieldLabel('City')),
+            TextField::create('State', 'State/Province')
+                ->setTitle($this->owner->fieldLabel('State')),
+            TextField::create('PostalCode')
+                ->setTitle($this->owner->fieldLabel('PostalCode')),
             CountryDropdownField::create('Country')
+                ->setTitle($this->owner->fieldLabel('Country'))
                 ->setEmptyString('Select Country'),
         ]);
 
         $compositeField = CompositeField::create();
-        $compositeField->push($overrideField = CheckboxField::create('LatLngOverride', 'Override Latitude and Longitude?'));
-        $overrideField->setDescription('Check this box and save to be able to edit the latitude and longitude manually.');
+        $compositeField->push($overrideField = CheckboxField::create('LatLngOverride', 'Override Latitude and Longitude?')
+            ->setTitle($this->owner->fieldLabel('LatLngOverride')));
+        $overrideField->setDescription(_t(
+            __CLASS__ . '.LatLngOverrideDescription',
+            'Check this box and save to be able to edit the latitude and longitude manually3.'
+        ));
 
         if ($this->owner->Lng && $this->owner->Lat) {
             $googleMapURL = 'https://maps.google.com/?q=' . $this->owner->Lat . ',' . $this->owner->Lng;
@@ -85,11 +111,11 @@ class AddressDataExtension extends DataExtension
             $compositeField->push(LiteralField::create('MapURL_Readonly', $googleMapDiv));
         }
         if ($this->owner->LatLngOverride) {
-            $compositeField->push(TextField::create('Lat', 'Lat'));
-            $compositeField->push(TextField::create('Lng', 'Lng'));
+            $compositeField->push(TextField::create('Lat', 'Lat')->setTitle($this->owner->fieldLabel('Lat')));
+            $compositeField->push(TextField::create('Lng', 'Lng')->setTitle($this->owner->fieldLabel('Lng')));
         } else {
-            $compositeField->push(ReadonlyField::create('Lat_Readonly', 'Lat', $this->owner->Lat));
-            $compositeField->push(ReadonlyField::create('Lng_Readonly', 'Lng', $this->owner->Lng));
+            $compositeField->push(ReadonlyField::create('Lat_Readonly', 'Lat', $this->owner->Lat)->setTitle($this->owner->fieldLabel('Lat')));
+            $compositeField->push(ReadonlyField::create('Lng_Readonly', 'Lng', $this->owner->Lng)->setTitle($this->owner->fieldLabel('Lng')));
         }
 
         $fields->addFieldToTab('Root.' . $tab_name, $compositeField);

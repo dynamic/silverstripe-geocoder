@@ -1,0 +1,12 @@
+en:
+  Dynamic\SilverStripeGeocoder\AddressDataExtension:
+    AddressLabel: 'Address'
+    Address2Label: 'Address 2'
+    CityLabel: 'City'
+    StateLabel: 'State/Province'
+    PostalCodeLabel: 'Postal Code'
+    CountryLabel: 'Country'
+    LatLngOverrideLabel: 'Override Latitude and Longitude'
+    LatLngOverrideDescription: 'Check this box and save to be able to edit the latitude and longitude manually.'
+    LatLabel: 'Latitude'
+    LngLabel: 'Longitude'
