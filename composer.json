@@ -43,6 +43,12 @@
         },
         "process-timeout": 600
     },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/dynamic"
+        }
+    ],
     "extra": {
         "branch-alias": {
             "dev-master": "3.x-dev"

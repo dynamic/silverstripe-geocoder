@@ -10,6 +10,8 @@ SilverStripe wrapper for [Geocoder](https://github.com/geocoder-php/Geocoder)
 [![Latest Unstable Version](https://poser.pugx.org/dynamic/silverstripe-geocoder/v/unstable)](https://packagist.org/packages/dynamic/silverstripe-geocoder)
 [![License](https://poser.pugx.org/dynamic/silverstripe-geocoder/license)](https://packagist.org/packages/dynamic/silverstripe-geocoder)
 
+[![Sponsor](https://img.shields.io/badge/Sponsor-Dynamic-brightgreen)](https://github.com/sponsors/dynamic)
+
 ## Requirements
 
 - Silverstripe ^5
