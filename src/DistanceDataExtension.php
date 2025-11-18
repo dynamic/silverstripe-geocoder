@@ -10,8 +10,6 @@ use SilverStripe\Control\Controller;
 
 /**
  * Class \Dynamic\SilverStripeGeocoder\DistanceDataExtension
- *
- * @property DistanceDataExtension $owner
  */
 class DistanceDataExtension extends Extension
 {
@@ -19,7 +17,7 @@ class DistanceDataExtension extends Extension
      * @param SQLSelect $query
      * @param DataQuery|null $dataQuery
      */
-    public function augmentSQL(SQLSelect $query, DataQuery $dataQuery = null)
+    public function augmentSQL(SQLSelect $query, ?DataQuery $dataQuery = null)
     {
         $addressVar = Config::inst()->get(DistanceDataExtension::class, 'address_var');
         $unitVar = Config::inst()->get(DistanceDataExtension::class, 'unit_var');
