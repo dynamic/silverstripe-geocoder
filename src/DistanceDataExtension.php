@@ -3,7 +3,7 @@
 namespace Dynamic\SilverStripeGeocoder;
 
 use SilverStripe\Core\Config\Config;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\ORM\Queries\SQLSelect;
 use SilverStripe\ORM\DataQuery;
 use SilverStripe\Control\Controller;
@@ -13,7 +13,7 @@ use SilverStripe\Control\Controller;
  *
  * @property DistanceDataExtension $owner
  */
-class DistanceDataExtension extends DataExtension
+class DistanceDataExtension extends Extension
 {
     /**
      * @param SQLSelect $query
