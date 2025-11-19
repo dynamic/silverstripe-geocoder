@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^8.1",
+        "php": "^8.3",
         "dynamic/silverstripe-country-dropdown-field": "^3",
         "geocoder-php/google-maps-provider": "^4.7",
         "guzzlehttp/guzzle": "^7.4",
