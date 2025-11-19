@@ -3,26 +3,34 @@
 SilverStripe wrapper for [Geocoder](https://github.com/geocoder-php/Geocoder)
 
 [![CI](https://github.com/dynamic/silverstripe-geocoder/actions/workflows/ci.yml/badge.svg)](https://github.com/dynamic/silverstripe-geocoder/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/dynamic/silverstripe-geocoder/branch/master/graph/badge.svg)](https://codecov.io/gh/dynamic/silverstripe-geocoder)
-[![Sponsor](https://img.shields.io/badge/Sponsor-Dynamic-brightgreen)](https://github.com/sponsors/dynamic)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/dynamic?label=Sponsors&logo=GitHub%20Sponsors&style=flat&color=ea4aaa)](https://github.com/sponsors/dynamic)
 
 [![Latest Stable Version](https://poser.pugx.org/dynamic/silverstripe-geocoder/v/stable)](https://packagist.org/packages/dynamic/silverstripe-geocoder)
 [![Total Downloads](https://poser.pugx.org/dynamic/silverstripe-geocoder/downloads)](https://packagist.org/packages/dynamic/silverstripe-geocoder)
-[![Latest Unstable Version](https://poser.pugx.org/dynamic/silverstripe-geocoder/v/unstable)](https://packagist.org/packages/dynamic/silverstripe-geocoder)
 [![License](https://poser.pugx.org/dynamic/silverstripe-geocoder/license)](https://packagist.org/packages/dynamic/silverstripe-geocoder)
 
 ## Requirements
 
-- Silverstripe ^5
-- dynamic/silverstripe-country-dropdown-field ^2
-- geocoder-php/google-maps-provider ^4.7
-- guzzlehttp/guzzle ^7.4
-- php-http/guzzle7-adapter ^1.0
-- php-http/message ^1.13
+- PHP: ^8.3
+- silverstripe/recipe-core: ^6
+- dynamic/silverstripe-country-dropdown-field: ^3
+- geocoder-php/google-maps-provider: ^4.7
+- guzzlehttp/guzzle: ^7.4
+- php-http/guzzle7-adapter: ^1.0
+- php-http/message: ^1.13
 
 ## Installation
 
 `composer require dynamic/silverstripe-geocoder`
+
+## Features
+
+- **Address Geocoding**: Automatically convert addresses to latitude/longitude coordinates using Google Maps Geocoding API
+- **Address Data Extension**: Adds comprehensive address fields (Address, City, State, PostalCode, Country, Lat, Lng) to any DataObject
+- **Distance Calculation**: Calculate and filter DataObjects by distance from a given address
+- **Static Map Generation**: Generate static Google Maps images with custom styling and markers
+- **Country Dropdown Integration**: Includes country selection field with international support
+- **Flexible Configuration**: Disable geocoding per DataObject, customize map styles, and use custom marker icons
 
 ## License
 
@@ -120,6 +128,17 @@ public function updateAddressValue(&$address) {
     $address = 'Neuschwansteinstraße 20, 87645 Schwangau, Germany';
 }
 ```
+
+## Upgrading from version 3
+
+SilverStripe Geocoder v4.0 is compatible with SilverStripe 6. Key changes:
+
+- Updated to SilverStripe CMS 6
+- Requires PHP 8.3 or higher
+- Updated `dynamic/silverstripe-country-dropdown-field` from ^2 to ^3 (SS6 compatible)
+- Internal extension namespace changes (ORM → Core\Extension); no changes required in user code
+
+For details on the SilverStripe 6 upgrade, see the [SilverStripe 6 upgrade guide](https://docs.silverstripe.org/en/6/changelogs/6.0.0/).
 
 ## Maintainers
  *  [Dynamic](http://www.dynamicagency.com) (<dev@dynamicagency.com>)
