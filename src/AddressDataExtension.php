@@ -13,7 +13,7 @@ use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\ReadonlyField;
 use SilverStripe\Forms\TextField;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\View\SSViewer;
 use SilverStripe\View\ThemeResourceLoader;
 
@@ -31,7 +31,7 @@ use SilverStripe\View\ThemeResourceLoader;
  * @property float $Lat
  * @property float $Lng
  */
-class AddressDataExtension extends DataExtension
+class AddressDataExtension extends Extension
 {
     /**
      * @var array
@@ -326,9 +326,8 @@ class AddressDataExtension extends DataExtension
     /**
      *
      */
-    public function onBeforeWrite()
+    protected function onBeforeWrite()
     {
-        parent::onBeforeWrite();
         if ($this->hasAddress() && !$this->owner->config()->get('disable_geocoding')
             && Config::inst()->get(GoogleGeocoder::class, 'geocoder_api_key')) {
             if (!$this->isAddressChanged()) {

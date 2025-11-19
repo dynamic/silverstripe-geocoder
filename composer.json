@@ -16,15 +16,16 @@
         }
     ],
     "require": {
-        "dynamic/silverstripe-country-dropdown-field": "^2",
+        "php": "^8.1",
+        "dynamic/silverstripe-country-dropdown-field": "^3",
         "geocoder-php/google-maps-provider": "^4.7",
         "guzzlehttp/guzzle": "^7.4",
         "php-http/guzzle7-adapter": "^1.0",
         "php-http/message": "^1.13",
-        "silverstripe/recipe-core": "^5.0"
+        "silverstripe/recipe-core": "^6"
     },
     "require-dev": {
-        "silverstripe/recipe-testing": "^3"
+        "silverstripe/recipe-testing": "^4"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -49,11 +50,6 @@
             "url": "https://github.com/sponsors/dynamic"
         }
     ],
-    "extra": {
-        "branch-alias": {
-            "dev-master": "3.x-dev"
-        }
-    },
     "scripts": {
         "lint": "vendor/bin/phpcs src/ tests/",
         "lint-clean": "vendor/bin/phpcbf src/ tests/"
