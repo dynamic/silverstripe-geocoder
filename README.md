@@ -12,7 +12,7 @@ SilverStripe wrapper for [Geocoder](https://github.com/geocoder-php/Geocoder)
 ## Requirements
 
 - PHP: ^8.3
-- SilverStripe: ^6
+- silverstripe/recipe-core: ^6
 - dynamic/silverstripe-country-dropdown-field: ^3
 - geocoder-php/google-maps-provider: ^4.7
 - guzzlehttp/guzzle: ^7.4
@@ -136,9 +136,9 @@ SilverStripe Geocoder v4.0 is compatible with SilverStripe 6. Key changes:
 - Updated to SilverStripe CMS 6
 - Requires PHP 8.3 or higher
 - Updated `dynamic/silverstripe-country-dropdown-field` from ^2 to ^3 (SS6 compatible)
-- Extension namespace changes (ORM → Core\Extension)
+- Internal extension namespace changes (ORM → Core\Extension); no changes required in user code
 
-See the [SilverStripe 6 Upgrade Guide](https://docs.silverstripe.org/en/6/) for more details.
+For details on the SilverStripe 6 upgrade, see the [SilverStripe 6 upgrade guide](https://docs.silverstripe.org/en/6/changelogs/6.0.0/).
 
 ## Maintainers
  *  [Dynamic](http://www.dynamicagency.com) (<dev@dynamicagency.com>)
