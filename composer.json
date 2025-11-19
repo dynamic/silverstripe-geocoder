@@ -50,11 +50,6 @@
             "url": "https://github.com/sponsors/dynamic"
         }
     ],
-    "extra": {
-        "branch-alias": {
-            "dev-master": "4.0.x-dev"
-        }
-    },
     "scripts": {
         "lint": "vendor/bin/phpcs src/ tests/",
         "lint-clean": "vendor/bin/phpcbf src/ tests/"
